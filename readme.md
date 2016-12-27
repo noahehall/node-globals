@@ -11,7 +11,7 @@
   + in node: global.appFuncs.someFunc (or just appFuncs)
 
 ## Including globals
- - at the top of the appropriate file:
+  - at the top of the appropriate file:
 
 ```
   const setGlobals = require('node-globals').default;
@@ -19,6 +19,15 @@
   // or setGlobals({ yourConstants: {...} }) // add or override default constants
   // or setGlobals({ yourFunctions: {...} }) // add or override default functions
   // or setGlobals({ yourConsts: {...}, yourFunctions: {...} })
+```
+
+  - or without creating a variable, merging process.env variables within your constants, and storing your constants in a some/directory/config.js 
+```
+  require('node-globals').default({
+    yourConstants: Object.assign(
+      { nodeOnline: process.env.NODE_ONLINE === 'true' }, require('../config.js').constants
+    )
+  });
 ```
 
 thank me later...
