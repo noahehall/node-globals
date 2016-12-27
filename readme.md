@@ -14,7 +14,7 @@
  - at the top of the appropriate file:
 
 ```
-  const setGlobals = require('../.globals').default;
+  const setGlobals = require('node-globals').default;
   setGlobals({});
   // or setGlobals({ yourConstants: {...} }) // add or override default constants
   // or setGlobals({ yourFunctions: {...} }) // add or override default functions
