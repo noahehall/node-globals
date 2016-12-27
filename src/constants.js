@@ -18,19 +18,14 @@ const appConsts = {
 const setAppConsts = (mergedConstants = Immutable(appConsts)) => {
   const self = self || null; // eslint-disable-line
   // set node app consts
-  if (!self && global && !global.appConsts) global.appConsts = mergedConstants;
+  if (!self && global) global.appConsts = Immutable.merge(global.appConsts || {}, mergedConstants);
   // set main & worker threads
-  else if (self && !self.appConsts) self.appConsts = mergedConstants;
+  else if (self) self.appConsts = Immutable.merge(self.appConsts || {}, mergedConstants);
 
   return self && self.appConsts || global && global.appConsts;
 };
 
 export default function setConstants ({ yourConstants = {} }) {
-  return setAppConsts(Immutable(_.merge(
-    appConsts,
-    !_.isEmpty(yourConstants)
-      ? yourConstants
-      : {}
-    )
+  return setAppConsts(Immutable(_.merge(appConsts, yourConstants || {})
   ));
 }

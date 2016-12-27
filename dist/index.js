@@ -63,9 +63,9 @@ var setFunctions = function setFunctions() {
 
   var self = self || null; // eslint-disable-line
   // set node app consts
-  if (!self && global && !global.appFuncs) global.appFuncs = mergedFunctions;
+  if (!self && global) global.appFuncs = _seamlessImmutable2.default.merge(global.appFuncs || {}, mergedFunctions);
   // set main & worker threads
-  else if (self && !self.appFuncs) self.appFuncs = mergedFunctions;
+  else if (self) self.appFuncs = _seamlessImmutable2.default.merge(self.appFuncs || {}, mergedFunctions);
 
   return self && self.appFuncs || global && global.appFuncs;
 };
@@ -78,7 +78,7 @@ function setGlobals(_ref) {
 
   var constantsSet = (0, _constants2.default)({ yourConstants: yourConstants });
 
-  var functionsSet = setFunctions((0, _seamlessImmutable2.default)(_lodash2.default.merge(appFuncs, !_lodash2.default.isEmpty(yourFunctions) ? yourFunctions : {})));
+  var functionsSet = setFunctions((0, _seamlessImmutable2.default)(_lodash2.default.merge(appFuncs, yourFunctions)));
 
   return {
     constantsSet: constantsSet,
