@@ -11,13 +11,14 @@
   + in node: global.appFuncs.someFunc (or just appFuncs)
 
 ## Including globals
- - at the top of the appropriate file: 
- ```
-   const setGlobals = require('../.globals').default;
-   setGlobals({});
-   // or setGlobals({ yourConstants: {...} }) // add or override default constants
-   // or setGlobals({ yourFunctions: {...} }) // add or override default functions
-   // or setGlobals({ yourConsts: {...}, yourFunctions: {...} })
- ```
+ - at the top of the appropriate file:
+
+```
+  const setGlobals = require('../.globals').default;
+  setGlobals({});
+  // or setGlobals({ yourConstants: {...} }) // add or override default constants
+  // or setGlobals({ yourFunctions: {...} }) // add or override default functions
+  // or setGlobals({ yourConsts: {...}, yourFunctions: {...} })
+```
 
 thank me later...
