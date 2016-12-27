@@ -23,29 +23,19 @@ const appFuncs = {
   ...serviceWorkers,
   ...time,
   ...utility,
-}
+};
 
 const setFunctions = (mergedFunctions = {}) => {
-  const self = self || null;
+  const self = self || null; // eslint-disable-line
   // set node app consts
   if (!self && global && !global.appFuncs) global.appFuncs = mergedFunctions;
   // set main & worker threads
   else if (self && !self.appFuncs) self.appFuncs = mergedFunctions;
 
-  return self && self.appFuncs || global && global.appFuncs
-    ? true
-    : false;
-}
+  return self && self.appFuncs || global && global.appFuncs;
+};
 
-/**
- * Set global variables on worker & main threads, else node
- * @type {[type]}
- */
-const self = self || null;
-if (!self) global.appFuncs = appFuncs;
-else self.appFuncs = appFuncs;
-
-export default function setGlobals({ yourConstants = {}, yourFunctions = {} }) {
+export default function setGlobals ({ yourConstants = {}, yourFunctions = {} }) {
   const constantsSet = setConstants({ yourConstants });
 
   const functionsSet = setFunctions(Immutable(_.merge(

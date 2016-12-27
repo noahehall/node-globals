@@ -61,21 +61,14 @@ var appFuncs = _extends({}, _dom2.default, _errors2.default, _integrations2.defa
 var setFunctions = function setFunctions() {
   var mergedFunctions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-  var self = self || null;
+  var self = self || null; // eslint-disable-line
   // set node app consts
   if (!self && global && !global.appFuncs) global.appFuncs = mergedFunctions;
   // set main & worker threads
   else if (self && !self.appFuncs) self.appFuncs = mergedFunctions;
 
-  return self && self.appFuncs || global && global.appFuncs ? true : false;
+  return self && self.appFuncs || global && global.appFuncs;
 };
-
-/**
- * Set global variables on worker & main threads, else node
- * @type {[type]}
- */
-var self = self || null;
-if (!self) global.appFuncs = appFuncs;else self.appFuncs = appFuncs;
 
 function setGlobals(_ref) {
   var _ref$yourConstants = _ref.yourConstants,
