@@ -11,7 +11,7 @@
   + in node: global.appFuncs.someFunc (or just appFuncs)
 
 ## Including globals
- - at the top of the appropriate file:
+ - at the top of the appropriate file: 
  ```
    const setGlobals = require('../.globals').default;
    setGlobals({});
