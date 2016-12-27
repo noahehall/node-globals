@@ -1,7 +1,7 @@
 {
   "main": "dist/index.js",
   "name": "node-globals",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "For all of your progressive development needs",
   "keywords": [
     "node",

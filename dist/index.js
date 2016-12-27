@@ -63,9 +63,9 @@ var setFunctions = function setFunctions() {
 
   var self = self || null; // eslint-disable-line
   // set node app consts
-  if (!self && global) global.appFuncs = _seamlessImmutable2.default.merge(global.appFuncs || {}, mergedFunctions);
+  if (!self && global) global.appFuncs = global.appFuncs ? _seamlessImmutable2.default.merge(global.appFuncs, mergedFunctions) : mergedFunctions;
   // set main & worker threads
-  else if (self) self.appFuncs = _seamlessImmutable2.default.merge(self.appFuncs || {}, mergedFunctions);
+  else if (self) self.appFuncs = self.appFuncs ? _seamlessImmutable2.default.merge(self.appFuncs, mergedFunctions) : mergedFunctions;
 
   return self && self.appFuncs || global && global.appFuncs;
 };
