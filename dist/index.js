@@ -71,14 +71,14 @@ var setFunctions = function setFunctions() {
 };
 
 function setGlobals(_ref) {
-  var _ref$yourConstants = _ref.yourConstants,
-      yourConstants = _ref$yourConstants === undefined ? {} : _ref$yourConstants,
-      _ref$yourFunctions = _ref.yourFunctions,
-      yourFunctions = _ref$yourFunctions === undefined ? {} : _ref$yourFunctions;
+  var _ref$constants = _ref.constants,
+      constants = _ref$constants === undefined ? {} : _ref$constants,
+      _ref$functions = _ref.functions,
+      functions = _ref$functions === undefined ? {} : _ref$functions;
 
-  var constantsSet = (0, _constants2.default)({ yourConstants: yourConstants });
+  var constantsSet = (0, _constants2.default)({ constants: constants });
 
-  var functionsSet = setFunctions((0, _seamlessImmutable2.default)(_lodash2.default.merge(appFuncs, yourFunctions)));
+  var functionsSet = setFunctions((0, _seamlessImmutable2.default)(_lodash2.default.merge(appFuncs, functions)));
 
   return {
     constantsSet: constantsSet,

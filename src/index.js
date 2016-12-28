@@ -41,10 +41,10 @@ const setFunctions = (mergedFunctions = {}) => {
   return self && self.appFuncs || global && global.appFuncs;
 };
 
-export default function setGlobals ({ yourConstants = {}, yourFunctions = {} }) {
-  const constantsSet = setConstants({ yourConstants });
+export default function setGlobals ({ constants = {}, functions = {} }) {
+  const constantsSet = setConstants({ constants });
 
-  const functionsSet = setFunctions(Immutable(_.merge(appFuncs, yourFunctions)));
+  const functionsSet = setFunctions(Immutable(_.merge(appFuncs, functions)));
 
   return {
     constantsSet,

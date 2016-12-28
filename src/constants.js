@@ -31,7 +31,7 @@ const setAppConsts = (mergedConstants = Immutable(appConsts)) => {
   return self && self.appConsts || global && global.appConsts;
 };
 
-export default function setConstants ({ yourConstants = {} }) {
-  return setAppConsts(Immutable(_.merge(appConsts, yourConstants || {})
+export default function setConstants ({ constants = {} }) {
+  return setAppConsts(Immutable(_.merge(appConsts, constants || {})
   ));
 }

@@ -42,8 +42,8 @@ var setAppConsts = function setAppConsts() {
 };
 
 function setConstants(_ref) {
-  var _ref$yourConstants = _ref.yourConstants,
-      yourConstants = _ref$yourConstants === undefined ? {} : _ref$yourConstants;
+  var _ref$constants = _ref.constants,
+      constants = _ref$constants === undefined ? {} : _ref$constants;
 
-  return setAppConsts((0, _seamlessImmutable2.default)(_lodash2.default.merge(appConsts, yourConstants || {})));
+  return setAppConsts((0, _seamlessImmutable2.default)(_lodash2.default.merge(appConsts, constants || {})));
 }

@@ -2,7 +2,7 @@
 
 ## why are we here?
 - dont you hate importing and requiring your constants and lib functions all over the friggin place?
-  + include constants and functions one time:
+  + include namespaced constants and functions one time:
     - on the server, e.g. server.js
     - in the main client thread, e.g. client.js
     - in worker thread, e.g. rootWorker.js
@@ -16,15 +16,15 @@
 ```
   const setGlobals = require('node-globals').default;
   setGlobals({});
-  // or setGlobals({ yourConstants: {...} }) // add or override default constants
-  // or setGlobals({ yourFunctions: {...} }) // add or override default functions
-  // or setGlobals({ yourConsts: {...}, yourFunctions: {...} })
+  // or setGlobals({ constants: {...} }) // add or override default constants
+  // or setGlobals({ functions: {...} }) // add or override default functions
+  // or setGlobals({ constants: {...}, functions: {...} })
 ```
 
-  - or without creating a variable, merging process.env variables within your constants, and storing your constants in a some/directory/config.js 
+  - or without creating a variable, merging process.env variables within your constants, and storing your constants in a some/directory/config.js
 ```
   require('node-globals').default({
-    yourConstants: Object.assign(
+    constants: Object.assign(
       { nodeOnline: process.env.NODE_ONLINE === 'true' }, require('../config.js').constants
     )
   });
