@@ -11,9 +11,7 @@ var dom = {
    * @returns {HTMLElement} Error message with string
    */
   setPreviousElementError: function setPreviousElementError(el) {
-    console.dir([el, el.previousSibling, el.previousSibling.firstElementChild]);
-
-    return el.previousSibling.firstElementChild.innerHTML = el.validationMessage + '<br />' + el.title;
+    return el.previousElementSibling.innerHTML = el.validationMessage + '<br />' + el.title;
   },
 
 
@@ -24,8 +22,7 @@ var dom = {
    * @return {[type]}                  [description]
    */
   clearPreviousElementError: function clearPreviousElementError(el) {
-    console.log(el);
-    return el.previousSibling.firstElementChild.innerHTML = el.validationMessage;
+    return el.previousElementSibling.innerHTML = el.validationMessage;
   },
 
 
@@ -70,7 +67,7 @@ var dom = {
 
 
   /**
-   * Inserts a text node into a child element
+   * Inserts a text node into a child element with class 'error'
    * @method clearFirstChildElementError
    * @param  {HTMLElement} el the parent element
    * @param  {Boolean} [msg=false] the message to enter
