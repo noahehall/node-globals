@@ -6,6 +6,12 @@ const dom = {
    * @returns {HTMLElement} Error message with string
    */
   setPreviousElementError (el) {
+    console.dir([
+      el,
+      el.previousSibling,
+      el.previousSibling.firstElementChild
+    ]);
+
     return el.previousSibling.firstElementChild.innerHTML = `${el.validationMessage}<br />${el.title}`;
   },
 
@@ -16,6 +22,7 @@ const dom = {
    * @return {[type]}                  [description]
    */
   clearPreviousElementError (el) {
+    console.log(el);
     return el.previousSibling.firstElementChild.innerHTML = el.validationMessage;
   },
 
