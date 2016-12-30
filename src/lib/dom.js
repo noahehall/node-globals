@@ -41,14 +41,14 @@ const dom = {
 
     if (el.willValidate && !el.validity.valid) {
       el.className = 'has-error';
-      if (setError) setPreviousElementError(el);
+      if (setError) this.setPreviousElementError(el);
 
       // TODO: check if we can return true for training
       return false;
     }
 
     el.className = '';
-    if (setError) clearPreviousElementError(el);
+    if (setError) this.clearPreviousElementError(el);
 
     return true;
   },

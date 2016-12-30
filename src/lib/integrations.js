@@ -17,7 +17,7 @@ const integrations = {
       if (this.rb[type]) return this.rb[type];
     }
 
-    return (f) => {null};
+    return (f) => { null };
   },
 }
 

@@ -12,7 +12,7 @@ const errors = {
     if (loc) utility.console('error')(loc);
     if (data) utility.console('dir', true)({ dataAssociatedWithError: data });
   }
-}
+};
 
 
 export default errors;
