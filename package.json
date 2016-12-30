@@ -1,7 +1,7 @@
 {
   "main": "dist/index.js",
   "name": "node-globals",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "immutable namespaced globals for node, main and worker threads",
   "keywords": [
     "node",

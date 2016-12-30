@@ -1,12 +1,52 @@
 const dom = {
   /**
+   * @description checks if an element has a certain class
+   * @see http://jaketrent.com/post/addremove-classes-raw-javascript/
+   */
+  hasClass (el, className) {
+    if (el.classList)
+      return el.classList.contains(className);
+
+    return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
+  },
+
+  /**
+   * @description add a class to an element
+   * @see http://jaketrent.com/post/addremove-classes-raw-javascript/
+   */
+  addClass (el, className) {
+    if (el.classList)
+      return el.classList.add(className);
+    else if (!this.hasClass(el, className))
+      return `${el.className} ${className}`;
+
+    return false;
+  },
+
+  /**
+   * @description remove a class from an element
+   * @see http://jaketrent.com/post/addremove-classes-raw-javascript/
+   */
+  removeClass (el, className) {
+    if (el.classList)
+      return el.classList.remove(className);
+    else if (this.hasClass(el, className)) {
+      const reg = new RegExp('(\\s|^)' + className + '(\\s|$)');
+
+      return el.className=el.className.replace(reg, ' ');
+    }
+
+    return false;
+  },
+
+  /**
    * inserts a child textNode into the previous element, based on the current elements validationMessage and title properties
    * @method setPreviousElementError
    * @param  {HTMLElement} el an element with a validationMessage and title property
    * @returns {HTMLElement} Error message with string
    */
   setPreviousElementError (el) {
-    return el.previousSibling.firstElementChild.innerHTML = `${el.validationMessage}<br />${el.title}`;
+    return el.previousElementSibling.innerHTML = `${el.validationMessage}<br />${el.title}`;
   },
 
   /**
@@ -16,7 +56,7 @@ const dom = {
    * @return {[type]}                  [description]
    */
   clearPreviousElementError (el) {
-    return el.previousSibling.firstElementChild.innerHTML = el.validationMessage;
+    return el.previousElementSibling.innerHTML = el.validationMessage;
   },
 
   /**
@@ -40,21 +80,21 @@ const dom = {
     const el = e.currentTarget;
 
     if (el.willValidate && !el.validity.valid) {
-      el.className = 'has-error';
+      this.addClass(el, 'has-error');
       if (setError) this.setPreviousElementError(el);
 
       // TODO: check if we can return true for training
       return false;
     }
 
-    el.className = '';
+    this.removeClass(el, 'has-error');
     if (setError) this.clearPreviousElementError(el);
 
     return true;
   },
 
   /**
-   * Inserts a text node into a child element
+   * Inserts a text node into a child element with class 'error'
    * @method clearFirstChildElementError
    * @param  {HTMLElement} el the parent element
    * @param  {Boolean} [msg=false] the message to enter
