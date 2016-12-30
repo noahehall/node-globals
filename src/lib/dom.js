@@ -30,24 +30,13 @@ const dom = {
   },
 
   /**
-   * Inserts a text node into a child element
-   * @method clearFirstChildElementError
-   * @param  {HTMLElement} el the parent element
-   * @param  {Boolean} [msg=false] the message to enter
-   * @return {[type]} [description]
-   */
-  clearFirstChildElementError (el, msg = false) {
-    return el.querySelector('.error').innerHTML = msg || '';
-  },
-
-  /**
-   * Check if an element is valid on blur
+   * Check if an element is valid
    * @method checkValidOnBlur
    * @param  {HTMLElement}         e                The element to
    * @param  {Boolean}        [setError=false] Whether to set an error message or ignore
    * @return {[type]}         [description]
    */
-  checkValidOnBlur (e, setError = false) {
+  checkElementValidity (e, setError = false) {
     const el = e.currentTarget;
 
     if (el.willValidate && !el.validity.valid) {
@@ -62,6 +51,17 @@ const dom = {
     if (setError) clearPreviousElementError(el);
 
     return true;
+  },
+
+  /**
+   * Inserts a text node into a child element
+   * @method clearFirstChildElementError
+   * @param  {HTMLElement} el the parent element
+   * @param  {Boolean} [msg=false] the message to enter
+   * @return {[type]} [description]
+   */
+  clearFirstChildElementError (el, msg = false) {
+    return el.querySelector('.error').innerHTML = msg || '';
   },
 
   /**
@@ -89,6 +89,6 @@ const dom = {
 
     return thisEl;
   },
-}
+};
 
 export default dom;
