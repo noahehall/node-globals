@@ -8,6 +8,21 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 var utility = {
   /**
+   * Function for determining if node has access to the internet, original function adapted from stackoverflow http://stackoverflow.com/questions/15270902/check-for-internet-connectivity-in-nodejs user @jarub
+   */
+  checkInternet: function checkInternet(cb) {
+    if (typeof require !== 'undefined') return require('dns').lookup('google.com', function (err) {
+      if (err && err.code === "ENOTFOUND") return cb(false);
+
+      return cb(true);
+    });
+
+    return function () {
+      return null;
+    };
+  },
+
+  /**
   * available console types, dependent on env
   * @see https://developer.mozilla.org/en-US/docs/Web/API/Console
   * @method consoleTypes
