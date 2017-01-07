@@ -1,6 +1,7 @@
 # Globals!
-  - immutable namespaced globals for node, main and worker threads
-  
+  - immutable namespaced globals for isomoprhic and progressive web applications
+  - Constants management and logic for node, client, and worker threads
+
 ## why are we here?
   - dont you hate importing and requiring your constants and lib functions all over the friggin place?
     + include namespaced constants and functions one time:

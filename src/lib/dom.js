@@ -40,6 +40,17 @@ const dom = {
   },
 
   /**
+   * remove default browser invalid popup
+   * @method disableConstraintPopup
+   * @param  {[type]}               form [description]
+   * @return {[type]}               [description]
+   */
+  disableConstraintPopup (form) {
+    form && form.addEventListener('invalid', (e) =>
+    e.preventDefault(), true)
+  },
+
+  /**
    * inserts a child textNode into the previous element, based on the current elements validationMessage and title properties
    * @method setPreviousElementError
    * @param  {HTMLElement} el an element with a validationMessage and title property
@@ -70,6 +81,17 @@ const dom = {
   },
 
   /**
+   * Inserts a text node into a child element with class 'error'
+   * @method clearFirstChildElementError
+   * @param  {HTMLElement} el the parent element
+   * @param  {Boolean} [msg=false] the message to enter
+   * @return {[type]} [description]
+   */
+  clearFirstChildElementError (el, msg = false) {
+    return el.querySelector('.error').innerHTML = msg || '';
+  },
+
+  /**
    * Check if an element is valid
    * @method checkValidOnBlur
    * @param  {HTMLElement}         e                The element to
@@ -91,17 +113,6 @@ const dom = {
     if (setError) this.clearPreviousElementError(el);
 
     return true;
-  },
-
-  /**
-   * Inserts a text node into a child element with class 'error'
-   * @method clearFirstChildElementError
-   * @param  {HTMLElement} el the parent element
-   * @param  {Boolean} [msg=false] the message to enter
-   * @return {[type]} [description]
-   */
-  clearFirstChildElementError (el, msg = false) {
-    return el.querySelector('.error').innerHTML = msg || '';
   },
 
   /**
