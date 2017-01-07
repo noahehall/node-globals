@@ -8,7 +8,6 @@ const integrations = {
   filterTable,
   rollbar (type = 'reportMessage', env = 'client') {
     try {
-      console.log(require.resolve("rollbar"));
       if (typeof XMLHttpRequest !== undefined) {
 
         if (!this.rb) {
