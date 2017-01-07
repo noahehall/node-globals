@@ -7,16 +7,20 @@ const integrations = {
   sortTable,
   filterTable,
   rollbar (type = 'reportMessage', env = 'client') {
-    if (typeof XMLHttpRequest !== undefined) {
+    try {
+      require.resolve("rollbar");
+      if (typeof XMLHttpRequest !== undefined) {
 
-      if (!this.rb) {
-        this.rb = require('rollbar');
-        this.rb.init(appConsts.rollbarKeyClient);
+        if (!this.rb) {
+          this.rb = require('rollbar');
+          this.rb.init(appConsts.rollbarKeyClient);
+        }
+
+        if (this.rb[type]) return this.rb[type];
       }
-
-      if (this.rb[type]) return this.rb[type];
+    } catch (noRollbar) {
+      // do nothing;
     }
-
     return (f) => { null };
   },
 }
