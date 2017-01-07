@@ -29,7 +29,7 @@ var integrations = {
     var env = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'client';
 
     try {
-      require.resolve("rollbar");
+      console.log(require.resolve("rollbar"));
       if ((typeof XMLHttpRequest === 'undefined' ? 'undefined' : _typeof(XMLHttpRequest)) !== undefined) {
 
         if (!this.rb) {
@@ -43,7 +43,7 @@ var integrations = {
       // do nothing;
     }
     return function (f) {
-      null;
+      return null;
     };
   }
 };

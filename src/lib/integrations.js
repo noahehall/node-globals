@@ -8,7 +8,7 @@ const integrations = {
   filterTable,
   rollbar (type = 'reportMessage', env = 'client') {
     try {
-      require.resolve("rollbar");
+      console.log(require.resolve("rollbar"));
       if (typeof XMLHttpRequest !== undefined) {
 
         if (!this.rb) {
@@ -21,7 +21,7 @@ const integrations = {
     } catch (noRollbar) {
       // do nothing;
     }
-    return (f) => { null };
+    return (f) => null;
   },
 }
 
