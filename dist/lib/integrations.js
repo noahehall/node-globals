@@ -28,16 +28,20 @@ var integrations = {
     var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'reportMessage';
     var env = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'client';
 
-    if ((typeof XMLHttpRequest === 'undefined' ? 'undefined' : _typeof(XMLHttpRequest)) !== undefined) {
+    try {
+      require.resolve("rollbar");
+      if ((typeof XMLHttpRequest === 'undefined' ? 'undefined' : _typeof(XMLHttpRequest)) !== undefined) {
 
-      if (!this.rb) {
-        this.rb = require('rollbar');
-        this.rb.init(appConsts.rollbarKeyClient);
+        if (!this.rb) {
+          this.rb = require('rollbar');
+          this.rb.init(appConsts.rollbarKeyClient);
+        }
+
+        if (this.rb[type]) return this.rb[type];
       }
-
-      if (this.rb[type]) return this.rb[type];
+    } catch (noRollbar) {
+      // do nothing;
     }
-
     return function (f) {
       null;
     };
