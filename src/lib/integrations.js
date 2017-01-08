@@ -4,8 +4,8 @@ import filterTable from './thirdparty/filtertable.js';
 
 const integrations = {
   _,
-  sortTable,
   filterTable,
-}
+  sortTable,
+};
 
 export default integrations;

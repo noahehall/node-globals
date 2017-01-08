@@ -20,8 +20,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var integrations = {
   _: _lodash2.default,
-  sortTable: _sorttable2.default,
-  filterTable: _filtertable2.default
+  filterTable: _filtertable2.default,
+  sortTable: _sorttable2.default
 };
 
 exports.default = integrations;
