@@ -33,8 +33,10 @@ function AddRow(id, n) {
     fltcell.appendChild(inp);
 
     if (i == n - 1) inpclass = "flt_s";
-    document.getElementById("flt" + i + "_" + id).className = inpclass;
-    document.getElementById("flt" + i + "_" + id).addEventListener('keyup', Filter);
+    var input = document.getElementById("flt" + i + "_" + id);
+    input.className = inpclass;
+    input.placeholder = 'Filter';
+    input.addEventListener('keyup', Filter);
   }
 }
 
