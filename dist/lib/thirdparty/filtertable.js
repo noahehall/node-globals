@@ -29,14 +29,10 @@ function AddRow(id, n) {
     var inp = document.createElement("input");
     inp.setAttribute("id", "flt" + i + "_" + id);
     inp.setAttribute("type", "text");
-    //inp.setAttribute("class","flt"); //doesn't seem to work on ie<=6
+    inp.setAttribute("class", i == n - 1 ? "flt_s" : "flt");
+    inp.setAttribute('placeholder', 'Filter');
+    inp.addEventListener('keyup', Filter);
     fltcell.appendChild(inp);
-
-    if (i == n - 1) inpclass = "flt_s";
-    var input = document.getElementById("flt" + i + "_" + id);
-    input.className = inpclass;
-    input.placeholder = 'Filter';
-    input.addEventListener('keyup', Filter);
   }
 }
 
