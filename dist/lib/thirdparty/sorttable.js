@@ -28,7 +28,7 @@ var _timer = void 0;
 var sorttable = {
   DATE_RE: false,
 
-  init: function init() {
+  init: function init(id) {
     if (typeof window === 'undefined' || document === 'undefined') return;
 
     // quit if this function has already been called
@@ -43,9 +43,10 @@ var sorttable = {
 
     sorttable.DATE_RE = /^(\d\d?)[\/\.-](\d\d?)[\/\.-]((\d\d)?\d\d)$/;
 
-    forEach(document.getElementsByTagName('table'), function (table) {
-      if (table.className.search(/\bsortable\b/) != -1) sorttable.makeSortable(table);
-    });
+    var thisTable = document.getElementById(id);
+    if (thisTable && thisTable.className.search(/\bsortable\b/) != -1) {
+      sorttable.makeSortable(table);
+    }
   },
   makeSortable: function makeSortable(table) {
     var col = void 0,

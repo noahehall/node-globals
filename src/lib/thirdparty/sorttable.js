@@ -23,7 +23,7 @@ let _timer;
 const sorttable = {
   DATE_RE: false,
 
-  init () {
+  init (id) {
     if (typeof window === 'undefined' || document === 'undefined') return;
 
     // quit if this function has already been called
@@ -38,9 +38,10 @@ const sorttable = {
 
     sorttable.DATE_RE = /^(\d\d?)[\/\.-](\d\d?)[\/\.-]((\d\d)?\d\d)$/;
 
-    forEach(document.getElementsByTagName('table'), (table) => {
-      if (table.className.search(/\bsortable\b/) != -1) sorttable.makeSortable(table);
-    });
+    const thisTable = document.getElementById(id);
+    if (thisTable && thisTable.className.search(/\bsortable\b/) != -1) {
+      sorttable.makeSortable(table);
+    }
   },
 
   makeSortable (table) {
