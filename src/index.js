@@ -26,19 +26,22 @@ const appFuncs = {
 };
 
 const setFunctions = (mergedFunctions = {}) => {
-  const self = self || null; // eslint-disable-line
   // set node app consts
-  if (!self && global)
+  if (typeof self === 'undefined' && typeof global !== 'undefined') {
     global.appFuncs = global.appFuncs
       ? Immutable.merge(global.appFuncs, mergedFunctions)
       : mergedFunctions;
-  // set main & worker threads
-  else if (self)
+
+    return global.appFuncs;
+  } else if (typeof self !== 'undefined') {
+    // set main & worker threads
     self.appFuncs = self.appFuncs
       ? Immutable.merge(self.appFuncs, mergedFunctions)
       : mergedFunctions;
 
-  return self && self.appFuncs || global && global.appFuncs;
+    return self.appFuncs;
+  }
+  return {};
 };
 
 export default function setGlobals ({ constants = {}, functions = {} }) {

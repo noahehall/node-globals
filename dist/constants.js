@@ -32,13 +32,19 @@ var appConsts = {
 var setAppConsts = function setAppConsts() {
   var mergedConstants = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : (0, _seamlessImmutable2.default)(appConsts);
 
-  var self = self || null; // eslint-disable-line
   // set node app consts
-  if (!self && global) global.appConsts = global.appConsts ? _seamlessImmutable2.default.merge(global.appConsts, mergedConstants) : mergedConstants;
-  // set main & worker threads
-  else if (self) self.appConsts = self.appConsts ? _seamlessImmutable2.default.merge(self.appConsts, mergedConstants) : mergedConstants;
+  if (typeof self === 'undefined' && typeof global !== 'undefined') {
+    global.appConsts = global.appConsts ? _seamlessImmutable2.default.merge(global.appConsts, mergedConstants) : mergedConstants;
 
-  return self && self.appConsts || global && global.appConsts;
+    return global.appConsts;
+  } else if (typeof self !== 'undefined') {
+    // set main & worker threads
+    self.appConsts = self.appConsts ? _seamlessImmutable2.default.merge(self.appConsts, mergedConstants) : mergedConstants;
+
+    return self.appConsts;
+  }
+
+  return {};
 };
 
 function setConstants(_ref) {

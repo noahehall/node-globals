@@ -16,19 +16,23 @@ const appConsts = {
  * @type {[type]}
 */
 const setAppConsts = (mergedConstants = Immutable(appConsts)) => {
-  const self = self || null; // eslint-disable-line
   // set node app consts
-  if (!self && global)
+  if (typeof self === 'undefined' && typeof global !== 'undefined') {
     global.appConsts = global.appConsts
       ? Immutable.merge(global.appConsts, mergedConstants)
       : mergedConstants;
-  // set main & worker threads
-  else if (self)
+
+    return global.appConsts;
+  } else if (typeof self !== 'undefined') {
+    // set main & worker threads
     self.appConsts = self.appConsts
       ? Immutable.merge(self.appConsts, mergedConstants)
       : mergedConstants;
 
-  return self && self.appConsts || global && global.appConsts;
+    return self.appConsts
+  }
+
+  return {};
 };
 
 export default function setConstants ({ constants = {} }) {
