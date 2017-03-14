@@ -61,13 +61,18 @@ var appFuncs = _extends({}, _dom2.default, _errors2.default, _integrations2.defa
 var setFunctions = function setFunctions() {
   var mergedFunctions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-  var self = self || null; // eslint-disable-line
   // set node app consts
-  if (!self && global) global.appFuncs = global.appFuncs ? _seamlessImmutable2.default.merge(global.appFuncs, mergedFunctions) : mergedFunctions;
-  // set main & worker threads
-  else if (self) self.appFuncs = self.appFuncs ? _seamlessImmutable2.default.merge(self.appFuncs, mergedFunctions) : mergedFunctions;
+  if (typeof self === 'undefined' && typeof global !== 'undefined') {
+    global.appFuncs = global.appFuncs ? _seamlessImmutable2.default.merge(global.appFuncs, mergedFunctions) : mergedFunctions;
 
-  return self && self.appFuncs || global && global.appFuncs;
+    return global.appFuncs;
+  } else if (typeof self !== 'undefined') {
+    // set main & worker threads
+    self.appFuncs = self.appFuncs ? _seamlessImmutable2.default.merge(self.appFuncs, mergedFunctions) : mergedFunctions;
+
+    return self.appFuncs;
+  }
+  return {};
 };
 
 function setGlobals(_ref) {
