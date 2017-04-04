@@ -160,6 +160,40 @@ var dom = {
   },
   clientWidth: function clientWidth() {
     return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  },
+  addListener: function addListener() {
+    var el = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+    var listenFor = arguments[1];
+    var callback = arguments[2];
+    var passive = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+
+    if (typeof window !== 'undefined') {
+      // setup
+      var thisEl = el || window;
+      var api = thisEl.addEventListener || thisEl.attachEvent;
+
+      // attach callback
+      return thisEl[api](listenFor, callback, passive);
+    }
+
+    return false;
+  },
+  removeListener: function removeListener() {
+    var el = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+    var listenFor = arguments[1];
+    var callback = arguments[2];
+    var passive = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+
+    if (typeof window !== 'undefined') {
+      // setup
+      var thisEl = el || window;
+      var api = thisEl.removeEventListener || thisEl.detachEvent;
+
+      // attach callback
+      return thisEl[api](listenFor, callback, passive);
+    }
+
+    return false;
   }
 };
 
