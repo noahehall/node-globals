@@ -170,10 +170,12 @@ var dom = {
     if (typeof window !== 'undefined') {
       // setup
       var thisEl = el || window;
-      var api = thisEl.addEventListener || thisEl.attachEvent;
+      if (thisEl) {
+        var api = thisEl.addEventListener || thisEl.attachEvent;
 
-      // attach callback
-      return api(listenFor, callback, passive);
+        // attach callback
+        if (api) return api(listenFor, callback, passive);
+      }
     }
 
     return false;
@@ -187,10 +189,12 @@ var dom = {
     if (typeof window !== 'undefined') {
       // setup
       var thisEl = el || window;
-      var api = thisEl.removeEventListener || thisEl.detachEvent;
+      if (thisEl) {
+        var api = thisEl.removeEventListener || thisEl.detachEvent;
 
-      // attach callback
-      return api(listenFor, callback, passive);
+        // attach callback
+        if (api) return api(listenFor, callback, passive);
+      }
     }
 
     return false;
