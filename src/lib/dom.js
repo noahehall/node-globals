@@ -153,6 +153,36 @@ const dom = {
         || document.body.clientWidth;
   },
 
+  addListener (el = null, listenFor, callback, passive = false) {
+    if (typeof window !== 'undefined') {
+      // setup
+      const thisEl = el || window;
+      if (thisEl) {
+        const api = thisEl.addEventListener || thisEl.attachEvent;
+
+        // attach callback
+        if (api) return api(listenFor, callback, passive);
+      }
+    }
+
+    return false;
+  },
+
+  removeListener (el = null, listenFor, callback, passive = false) {
+    if (typeof window !== 'undefined') {
+      // setup
+      const thisEl = el || window;
+      if (thisEl) {
+        const api = thisEl.removeEventListener || thisEl.detachEvent;
+
+        // attach callback
+        if (api) return api(listenFor, callback, passive);
+      }
+    }
+
+    return false;
+  }
+
 };
 
 export default dom;
