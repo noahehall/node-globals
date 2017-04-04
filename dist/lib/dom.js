@@ -173,7 +173,7 @@ var dom = {
       var api = thisEl.addEventListener || thisEl.attachEvent;
 
       // attach callback
-      return thisEl[api](listenFor, callback, passive);
+      return api(listenFor, callback, passive);
     }
 
     return false;
@@ -190,7 +190,7 @@ var dom = {
       var api = thisEl.removeEventListener || thisEl.detachEvent;
 
       // attach callback
-      return thisEl[api](listenFor, callback, passive);
+      return api(listenFor, callback, passive);
     }
 
     return false;
