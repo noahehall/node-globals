@@ -154,6 +154,12 @@ var dom = {
     thisEl.className = 'more-info';
 
     return thisEl;
+  },
+  clientHeight: function clientHeight() {
+    return window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+  },
+  clientWidth: function clientWidth() {
+    return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
   }
 };
 

@@ -140,6 +140,19 @@ const dom = {
 
     return thisEl;
   },
+
+  clientHeight () {
+    return window.innerHeight
+      || document.documentElement.clientHeight
+      || document.body.clientHeight;
+  },
+
+  clientWidth () {
+    return  window.innerWidth
+        || document.documentElement.clientWidth
+        || document.body.clientWidth;
+  },
+
 };
 
 export default dom;
