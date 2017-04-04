@@ -157,10 +157,12 @@ const dom = {
     if (typeof window !== 'undefined') {
       // setup
       const thisEl = el || window;
-      const api = thisEl.addEventListener || thisEl.attachEvent;
+      if (thisEl) {
+        const api = thisEl.addEventListener || thisEl.attachEvent;
 
-      // attach callback
-      return api(listenFor, callback, passive);
+        // attach callback
+        if (api) return api(listenFor, callback, passive);
+      }
     }
 
     return false;
@@ -170,10 +172,12 @@ const dom = {
     if (typeof window !== 'undefined') {
       // setup
       const thisEl = el || window;
-      const api = thisEl.removeEventListener || thisEl.detachEvent;
+      if (thisEl) {
+        const api = thisEl.removeEventListener || thisEl.detachEvent;
 
-      // attach callback
-      return api(listenFor, callback, passive);
+        // attach callback
+        if (api) return api(listenFor, callback, passive);
+      }
     }
 
     return false;
